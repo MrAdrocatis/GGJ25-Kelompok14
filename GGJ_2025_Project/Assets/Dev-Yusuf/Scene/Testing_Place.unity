@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootKey: 32
-  projectilePrefab: {fileID: 108268524296960148, guid: a880e5544973ef443968b3b9e37a6bc7, type: 3}
+  projectilePrefab: {fileID: 1399939528975428102, guid: 0e18ccb065c4f6140aee3ec71000a52f, type: 3}
   firePointVFX: {fileID: 0}
   firePointOffset: 0.5
   projectileSpeed: 10
@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 818001244}
   - component: {fileID: 818001243}
   - component: {fileID: 818001245}
+  - component: {fileID: 818001247}
   - component: {fileID: 818001246}
   m_Layer: 0
   m_Name: Enemy-fly
@@ -469,6 +470,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &818001247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818001242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fd74e3c0b8ede45899e996962c49e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1000302213
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,6 +3273,51 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &1348774763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1348774764}
+  - component: {fileID: 1348774765}
+  m_Layer: 0
+  m_Name: Limit bubble
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1348774764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348774763}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 37.9, z: -0.0032748221}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1348774765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348774763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57768263bdc80f345ab3ef96fa54ee58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 82, y: 5}
 --- !u!1 &1692902020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3360,3 +3418,4 @@ SceneRoots:
   - {fileID: 515489007}
   - {fileID: 478282696}
   - {fileID: 818001244}
+  - {fileID: 1348774764}
