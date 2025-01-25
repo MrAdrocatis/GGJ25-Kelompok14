@@ -7,9 +7,9 @@ public class Movement : MonoBehaviour
     private float horizontalMovement;
     private Rigidbody2D rB;
 
-    [Header("jumping")]
-    public float jumpforce = 20f;
-    private bool justJumped = false;
+    //[Header("jumping")]
+    //public float jumpforce = 20f;
+    //private bool justJumped = false;
 
     [Header("ground")]
     public bool onground = false;

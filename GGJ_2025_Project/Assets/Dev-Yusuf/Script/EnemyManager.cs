@@ -7,6 +7,22 @@ public class EnemyManager : MonoBehaviour
     private bool isTrapped = false;
     private List<MonoBehaviour> activeComponents = new List<MonoBehaviour>();
 
+    // Referensi ke GameManager
+    public GameManager gameManager;
+
+    private void Awake()
+    {
+        // Cari GameManager di scene jika belum diassign
+        if (gameManager == null)
+        {
+            gameManager = FindObjectOfType<GameManager>();
+            if (gameManager == null)
+            {
+                Debug.LogError("GameManager not found in the scene!");
+            }
+        }
+    }
+
     public void SetTrapped(bool trapped)
     {
         isTrapped = trapped;
@@ -47,4 +63,23 @@ public class EnemyManager : MonoBehaviour
             Debug.Log($"Enemy {gameObject.name} is released from bubble.");
         }
     }
+
+    private void OnDestroy()
+    {
+        // Pemberitahuan ke GameManager
+        if (gameManager != null)
+        {
+            gameManager.OnEnemyDefeated();
+        }
+        else
+        {
+            Debug.LogWarning("GameManager reference is not assigned! EnemyManager cannot report kill.");
+        }
+    }
+
+    public void OnEnemyDeath()
+    {
+        Destroy(gameObject); // Menghancurkan musuh
+    }
 }
+
