@@ -9,16 +9,19 @@ public class EnemyManager : MonoBehaviour
     public void SetTrapped(bool trapped)
     {
         isTrapped = trapped;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        Collider2D collider = GetComponent<Collider2D>();
+
         if (trapped)
         {
-            // Disable enemy functionality
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            GetComponent<Collider2D>().enabled = false;
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
+            collider.enabled = false;
         }
         else
         {
-            // Re-enable enemy functionality
-            GetComponent<Collider2D>().enabled = true;
+            rb.isKinematic = false;
+            collider.enabled = true;
         }
     }
 }

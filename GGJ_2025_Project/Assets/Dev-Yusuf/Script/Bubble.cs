@@ -5,42 +5,34 @@ using UnityEngine;
 public class Bubble : MonoBehaviour
 {
     [Header("Bubble Settings")]
-    public float initialUpwardForce = 5f; // Initial force upwards
-    public float airDrag = 0.1f; // Air drag deceleration
-    public float randomForceMagnitude = 3f; // Force applied randomly to sides
-    public float selfDestructTime = 10f; // Time to self-destruct if no enemy trapped
-    public float enemyReleaseTime = 5f; // Time to release enemy if not interacted
+    public float initialUpwardForce = 5f;
+    public float selfDestructTime = 10f;
+    public float enemyReleaseTime = 5f;
 
     private Rigidbody2D rb;
     private GameObject trappedEnemy;
-    private float trapStartTime;
+    private float spawnTime;
+    private bool hasReachedBoundary = false;
 
-    public bool IsTrappingEnemy { get; private set; } = false; // Public property for external access
+    public bool IsTrappingEnemy => trappedEnemy != null;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(Vector2.up * initialUpwardForce, ForceMode2D.Impulse);
-        StartCoroutine(ApplyRandomSideForce());
-        Invoke(nameof(SelfDestruct), selfDestructTime);
+        rb.velocity = new Vector2(0, initialUpwardForce);
+        spawnTime = Time.time;
     }
 
     void Update()
     {
-        if (!IsTrappingEnemy)
+        if (!hasReachedBoundary && rb.velocity.y < initialUpwardForce)
         {
-            // Apply air drag
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(0, rb.velocity.y - airDrag * Time.deltaTime));
+            rb.velocity = new Vector2(rb.velocity.x, initialUpwardForce);
         }
-    }
 
-    private IEnumerator ApplyRandomSideForce()
-    {
-        while (!IsTrappingEnemy)
+        if (!IsTrappingEnemy && Time.time - spawnTime > selfDestructTime)
         {
-            yield return new WaitForSeconds(1f);
-            float randomDirection = Random.Range(-1f, 1f);
-            rb.AddForce(Vector2.right * randomDirection * randomForceMagnitude, ForceMode2D.Impulse);
+            Destroy(gameObject);
         }
     }
 
@@ -50,7 +42,7 @@ public class Bubble : MonoBehaviour
         {
             TrapEnemy(collision.gameObject);
         }
-        else if (collision.CompareTag("SpecialProjectile") && IsTrappingEnemy)
+        else if (collision.CompareTag("Dart") && IsTrappingEnemy)
         {
             Destroy(trappedEnemy);
             Destroy(gameObject);
@@ -60,30 +52,27 @@ public class Bubble : MonoBehaviour
     private void TrapEnemy(GameObject enemy)
     {
         trappedEnemy = enemy;
-        IsTrappingEnemy = true;
-        trapStartTime = Time.time;
-        enemy.GetComponent<EnemyManager>()?.SetTrapped(true);
-        rb.velocity = Vector2.zero; // Stop vertical movement
-        CancelInvoke(nameof(SelfDestruct)); // Cancel default self-destruction
+        trappedEnemy.transform.SetParent(transform);
+        trappedEnemy.GetComponent<EnemyManager>()?.SetTrapped(true);
+        spawnTime = Time.time; // Reset timer
+        rb.velocity = Vector2.zero;
         Invoke(nameof(ReleaseEnemy), enemyReleaseTime);
     }
 
     private void ReleaseEnemy()
     {
-        if (IsTrappingEnemy && trappedEnemy != null)
+        if (IsTrappingEnemy)
         {
             trappedEnemy.GetComponent<EnemyManager>()?.SetTrapped(false);
+            trappedEnemy.transform.SetParent(null);
             trappedEnemy = null;
-            IsTrappingEnemy = false;
             Destroy(gameObject);
         }
     }
 
-    private void SelfDestruct()
+    public void StopVerticalForce()
     {
-        if (!IsTrappingEnemy)
-        {
-            Destroy(gameObject);
-        }
+        hasReachedBoundary = true;
+        rb.velocity = Vector2.zero;
     }
 }

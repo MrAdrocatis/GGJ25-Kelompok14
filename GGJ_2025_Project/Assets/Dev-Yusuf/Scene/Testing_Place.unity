@@ -289,7 +289,6 @@ MonoBehaviour:
   firePointOffset: 0.5
   projectileSpeed: 10
   shootCooldown: 0.5
-  idleSprite: {fileID: -9095717837082945937, guid: 049ac8c8665c95d46980e9e105d976d8, type: 3}
   upSprite: {fileID: 3625043607559282579, guid: f9ddb695ea79c1149a94fb6756c2bc8c, type: 3}
   leftSprite: {fileID: 7482667652216324306, guid: 9d95760202730804cb0640f01a2f498c, type: 3}
   rightSprite: {fileID: 7482667652216324306, guid: cbc2386b03501d647aa6f3b6840f809b, type: 3}
@@ -353,9 +352,10 @@ GameObject:
   - component: {fileID: 818001245}
   - component: {fileID: 818001247}
   - component: {fileID: 818001246}
+  - component: {fileID: 818001248}
   m_Layer: 0
   m_Name: Enemy-fly
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -482,6 +482,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5fd74e3c0b8ede45899e996962c49e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &818001248
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818001242}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1000302213
 GameObject:
   m_ObjectHideFlags: 0
@@ -3317,7 +3352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57768263bdc80f345ab3ef96fa54ee58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 82, y: 5}
 --- !u!1 &1692902020
 GameObject:
   m_ObjectHideFlags: 0
