@@ -11,12 +11,20 @@ public class Bubble : MonoBehaviour
     public float enemyReleaseTime = 5f;
     public float forceDelay = 1.2f; // Waktu jeda untuk gaya awal
 
+    [Header("Horizontal Movement Settings")]
+    public float horizontalSpeedMin = 1f; // Minimum horizontal speed
+    public float horizontalSpeedMax = 8f; // Maximum horizontal speed
+    public float horizontalMoveInterval = 3f; // Interval between horizontal movements
+
     private Rigidbody2D rb;
     public GameObject trappedEnemy { get; private set; }
     private float spawnTime;
     private bool hasReachedBoundary = false;
 
     public bool IsTrappingEnemy => trappedEnemy != null;
+
+    private float nextHorizontalMoveTime = 0f; // Timer for next horizontal movement
+    private bool canMoveHorizontally = false; // Prevent horizontal movement during forceDelay
 
     void Awake()
     {
@@ -27,6 +35,7 @@ public class Bubble : MonoBehaviour
     {
         spawnTime = Time.time;
         Debug.Log($"Bubble spawned. Initial upward force will be applied after {forceDelay} seconds.");
+        Invoke(nameof(EnableHorizontalMovement), forceDelay);
         Invoke(nameof(ApplyInitialForce), forceDelay);
     }
 
@@ -38,6 +47,13 @@ public class Bubble : MonoBehaviour
             {
                 rb.velocity -= new Vector2(0, dragFactor * Time.deltaTime);
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, initialUpwardForce));
+            }
+
+            // Handle random horizontal movement
+            if (canMoveHorizontally && Time.time >= nextHorizontalMoveTime)
+            {
+                PerformRandomHorizontalMove();
+                nextHorizontalMoveTime = Time.time + horizontalMoveInterval;
             }
         }
 
@@ -53,6 +69,21 @@ public class Bubble : MonoBehaviour
         rb.velocity += new Vector2(0, initialUpwardForce);
         Debug.Log($"Initial upward force applied: {initialUpwardForce}");
     }
+
+    void EnableHorizontalMovement()
+    {
+        canMoveHorizontally = true;
+        Debug.Log("Horizontal movement enabled after initial delay.");
+    }
+
+    private void PerformRandomHorizontalMove()
+    {
+        float randomSpeed = Random.Range(horizontalSpeedMin, horizontalSpeedMax);
+        float randomDirection = Random.Range(0, 2) == 0 ? -1f : 1f; // Randomly choose left (-1) or right (+1)
+        rb.velocity = new Vector2(randomSpeed * randomDirection, rb.velocity.y);
+        Debug.Log($"Bubble performed random horizontal move: Speed = {randomSpeed}, Direction = {(randomDirection > 0 ? "Right" : "Left")}");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log($"Bubble collided with: {collision.gameObject.name}, Tag: {collision.tag}");
