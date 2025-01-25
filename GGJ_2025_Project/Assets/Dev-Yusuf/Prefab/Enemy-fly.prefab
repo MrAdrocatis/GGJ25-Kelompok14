@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8dfdd60ff995234abb8432a49b7591d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1134665953333233314, guid: 6c6fe99112c30614ca57cd73a05b149a, type: 3}
+  player: {fileID: 0}
   moveSpeed: 5
   randomFactor: 0.5
   randomInterval: 0.5

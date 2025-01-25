@@ -20,6 +20,20 @@ public class EnemyFollow : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         randomOffset = Vector2.zero;
         timeSinceLastRandomUpdate = 0f;
+
+        // Cari objek dengan tag "Player" saat runtime
+        if (player == null)
+        {
+            GameObject playerObject = GameObject.FindWithTag("Player");
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+            }
+            else
+            {
+                Debug.LogError("Player not found. Make sure the Player has the correct tag!");
+            }
+        }
     }
 
     void Update()
