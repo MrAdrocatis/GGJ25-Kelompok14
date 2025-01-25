@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomEnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     [System.Serializable]
     public class EnemyPrefab
