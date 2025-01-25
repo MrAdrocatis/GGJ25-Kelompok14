@@ -31,20 +31,23 @@ public class Dart : MonoBehaviour
         if (collision.CompareTag("Bubble"))
         {
             Bubble bubble = collision.GetComponent<Bubble>();
+
+            // Hanya hancurkan bubble yang sedang menangkap musuh
             if (bubble != null && bubble.IsTrappingEnemy)
             {
-                // Hancurkan enemy dan bubble
+                // Hancurkan musuh dan bubble
                 Destroy(bubble.trappedEnemy);
                 Destroy(bubble.gameObject);
                 Debug.Log("Dart destroyed a bubble with trapped enemy.");
             }
             else
             {
-                // Hancurkan hanya bubble jika tidak ada enemy
-                Destroy(bubble.gameObject);
-                Debug.Log("Dart destroyed an empty bubble.");
+                // Tidak menghancurkan bubble kosong
+                Debug.Log("Dart hit an empty bubble but did not destroy it.");
             }
-            Destroy(gameObject); // Hancurkan dart setelah trigger
+
+            // Hancurkan dart setelah trigger
+            Destroy(gameObject);
         }
         else if (collision.CompareTag("Block"))
         {
@@ -54,4 +57,5 @@ public class Dart : MonoBehaviour
         }
     }
 }
+
 
