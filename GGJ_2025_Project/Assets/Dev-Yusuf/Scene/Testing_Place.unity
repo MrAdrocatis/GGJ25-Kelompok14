@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 478282697}
   - component: {fileID: 478282698}
   - component: {fileID: 478282699}
+  - component: {fileID: 478282700}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -286,7 +287,7 @@ MonoBehaviour:
   shootKey: 32
   projectilePrefab: {fileID: 1399939528975428102, guid: 0e18ccb065c4f6140aee3ec71000a52f, type: 3}
   firePointVFX: {fileID: 0}
-  firePointOffset: 0.5
+  firePointOffset: 1.5
   projectileSpeed: 10
   shootCooldown: 0.5
   upSprite: {fileID: 3625043607559282579, guid: f9ddb695ea79c1149a94fb6756c2bc8c, type: 3}
@@ -294,6 +295,21 @@ MonoBehaviour:
   rightSprite: {fileID: 7482667652216324306, guid: cbc2386b03501d647aa6f3b6840f809b, type: 3}
   upLeftSprite: {fileID: 7482667652216324306, guid: 5dea4498f44fd8048a9073332ead783f, type: 3}
   upRightSprite: {fileID: 7482667652216324306, guid: f6847c24dfa00324cbfda83b5e6ca8c6, type: 3}
+--- !u!114 &478282700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478282694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c278550e6ea8b4288db88d897291db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementspeed: 12
+  jumpforce: 20
+  onground: 0
 --- !u!1 &515489005
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +366,7 @@ GameObject:
   - component: {fileID: 818001244}
   - component: {fileID: 818001243}
   - component: {fileID: 818001245}
-  - component: {fileID: 818001247}
+  - component: {fileID: 818001249}
   - component: {fileID: 818001246}
   - component: {fileID: 818001248}
   m_Layer: 0
@@ -470,18 +486,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &818001247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818001242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5fd74e3c0b8ede45899e996962c49e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &818001248
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -517,6 +521,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &818001249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818001242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fd74e3c0b8ede45899e996962c49e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1000302213
 GameObject:
   m_ObjectHideFlags: 0

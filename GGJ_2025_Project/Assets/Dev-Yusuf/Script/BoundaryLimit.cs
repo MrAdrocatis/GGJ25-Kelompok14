@@ -12,6 +12,7 @@ public class BoundaryLimit : MonoBehaviour
             if (bubble != null)
             {
                 bubble.StopVerticalForce();
+                Debug.Log("Bubble triggered BoundaryLimit.");
             }
         }
     }

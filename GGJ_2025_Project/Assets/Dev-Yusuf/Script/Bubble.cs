@@ -6,8 +6,10 @@ public class Bubble : MonoBehaviour
 {
     [Header("Bubble Settings")]
     public float initialUpwardForce = 5f;
+    public float dragFactor = 0.1f; // Adjusted drag for smoother deceleration
     public float selfDestructTime = 10f;
     public float enemyReleaseTime = 5f;
+    public float forceDelay = 3f; // Delay before initial upward force is applied
 
     private Rigidbody2D rb;
     private GameObject trappedEnemy;
@@ -16,46 +18,75 @@ public class Bubble : MonoBehaviour
 
     public bool IsTrappingEnemy => trappedEnemy != null;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(0, initialUpwardForce);
+    }
+
+    void Start()
+    {
         spawnTime = Time.time;
+        Debug.Log($"Bubble spawned. Initial upward force will be applied after {forceDelay} seconds.");
+        Invoke(nameof(ApplyInitialForce), forceDelay);
     }
 
     void Update()
     {
-        if (!hasReachedBoundary && rb.velocity.y < initialUpwardForce)
+        if (!hasReachedBoundary)
         {
-            rb.velocity = new Vector2(rb.velocity.x, initialUpwardForce);
+            if (rb.velocity.y > initialUpwardForce || rb.velocity.x != 0)
+            {
+                Vector2 drag = new Vector2(rb.velocity.x * dragFactor, Mathf.Max((rb.velocity.y - initialUpwardForce) * dragFactor, 0)) * Time.deltaTime;
+                rb.velocity -= drag;
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, initialUpwardForce));
+            }
         }
 
         if (!IsTrappingEnemy && Time.time - spawnTime > selfDestructTime)
         {
+            Debug.Log("Bubble self-destructed after timeout.");
             Destroy(gameObject);
         }
     }
 
+    void ApplyInitialForce()
+    {
+        rb.velocity += new Vector2(0, initialUpwardForce);
+        Debug.Log($"Initial upward force applied: {initialUpwardForce}");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log($"Bubble collided with: {collision.gameObject.name}, Tag: {collision.tag}");
+
         if (collision.CompareTag("Enemy") && !IsTrappingEnemy)
         {
+            Debug.Log("Attempting to trap enemy...");
             TrapEnemy(collision.gameObject);
         }
         else if (collision.CompareTag("Dart") && IsTrappingEnemy)
         {
             Destroy(trappedEnemy);
+            Debug.Log("Bubble and trapped enemy destroyed by Dart.");
             Destroy(gameObject);
         }
     }
 
     private void TrapEnemy(GameObject enemy)
     {
+        if (trappedEnemy != null)
+        {
+            Debug.LogWarning("Bubble already trapping an enemy, ignoring new collision.");
+            return;
+        }
+
         trappedEnemy = enemy;
         trappedEnemy.transform.SetParent(transform);
+        trappedEnemy.transform.localPosition = Vector2.zero; // Center the enemy in the bubble
         trappedEnemy.GetComponent<EnemyManager>()?.SetTrapped(true);
         spawnTime = Time.time; // Reset timer
         rb.velocity = Vector2.zero;
+        Debug.Log($"Enemy {enemy.name} trapped by bubble.");
         Invoke(nameof(ReleaseEnemy), enemyReleaseTime);
     }
 
@@ -63,6 +94,7 @@ public class Bubble : MonoBehaviour
     {
         if (IsTrappingEnemy)
         {
+            Debug.Log($"Releasing trapped enemy: {trappedEnemy.name}");
             trappedEnemy.GetComponent<EnemyManager>()?.SetTrapped(false);
             trappedEnemy.transform.SetParent(null);
             trappedEnemy = null;
@@ -74,5 +106,6 @@ public class Bubble : MonoBehaviour
     {
         hasReachedBoundary = true;
         rb.velocity = Vector2.zero;
+        Debug.Log("Bubble reached boundary and stopped vertical force.");
     }
 }
