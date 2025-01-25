@@ -6,13 +6,13 @@ public class Bubble : MonoBehaviour
 {
     [Header("Bubble Settings")]
     public float initialUpwardForce = 5f;
-    public float dragFactor = 0.1f; // Adjusted drag for smoother deceleration
+    public float dragFactor = 0.01f; // Reduced drag for smoother deceleration
     public float selfDestructTime = 10f;
     public float enemyReleaseTime = 5f;
-    public float forceDelay = 3f; // Delay before initial upward force is applied
+    public float forceDelay = 1.2f; // Waktu jeda untuk gaya awal
 
     private Rigidbody2D rb;
-    private GameObject trappedEnemy;
+    public GameObject trappedEnemy { get; private set; }
     private float spawnTime;
     private bool hasReachedBoundary = false;
 
@@ -34,10 +34,9 @@ public class Bubble : MonoBehaviour
     {
         if (!hasReachedBoundary)
         {
-            if (rb.velocity.y > initialUpwardForce || rb.velocity.x != 0)
+            if (rb.velocity.y > initialUpwardForce)
             {
-                Vector2 drag = new Vector2(rb.velocity.x * dragFactor, Mathf.Max((rb.velocity.y - initialUpwardForce) * dragFactor, 0)) * Time.deltaTime;
-                rb.velocity -= drag;
+                rb.velocity -= new Vector2(0, dragFactor * Time.deltaTime);
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, initialUpwardForce));
             }
         }
@@ -54,7 +53,6 @@ public class Bubble : MonoBehaviour
         rb.velocity += new Vector2(0, initialUpwardForce);
         Debug.Log($"Initial upward force applied: {initialUpwardForce}");
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log($"Bubble collided with: {collision.gameObject.name}, Tag: {collision.tag}");
@@ -82,7 +80,6 @@ public class Bubble : MonoBehaviour
 
         trappedEnemy = enemy;
         trappedEnemy.transform.SetParent(transform);
-        trappedEnemy.transform.localPosition = Vector2.zero; // Center the enemy in the bubble
         trappedEnemy.GetComponent<EnemyManager>()?.SetTrapped(true);
         spawnTime = Time.time; // Reset timer
         rb.velocity = Vector2.zero;

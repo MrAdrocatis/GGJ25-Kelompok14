@@ -6,7 +6,7 @@ public class AutoDart : MonoBehaviour
 {
     [Header("Shooting Settings")]
     public GameObject projectilePrefab; // The projectile to spawn
-    public float bulletVelocity = 5f; // Speed of the bullet
+    public float bulletVelocity = 20f; // Speed of the bullet, set to a high value for fast shooting
     public float fireInterval = 1f; // Time between each shot
     public Vector2 firePointOffset = new Vector2(0, 1f); // Offset from the center to spawn bullets
 
@@ -29,7 +29,7 @@ public class AutoDart : MonoBehaviour
     {
         if (projectilePrefab == null)
         {
-            UnityEngine.Debug.Log("Projectile Prefab is not assigned.");
+            Debug.LogError("Projectile Prefab is not assigned.");
             return;
         }
 
@@ -47,7 +47,7 @@ public class AutoDart : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.Log("Projectile Prefab does not have a Rigidbody2D component.");
+            Debug.LogError("Projectile Prefab does not have a Rigidbody2D component.");
         }
     }
 }
