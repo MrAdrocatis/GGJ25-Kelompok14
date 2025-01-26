@@ -3,9 +3,10 @@ using UnityEngine;
 public class PlayerDeath : MonoBehaviour
 {
     public GameManager gameManager; // Reference to the GameManager
-
+    private Animator animator;
     private void Start()
     {
+        animator = GetComponent<Animator>();
         // Ensure GameManager is assigned
         if (gameManager == null)
         {
@@ -23,10 +24,13 @@ public class PlayerDeath : MonoBehaviour
             if (gameManager != null)
             {
                 gameManager.OnPlayerDeath();
-            }
 
-            // Destroy the player game object
-            Destroy(gameObject);
+
+                animator.SetTrigger("IsLose");
+
+                // Destroy the player game object
+                Destroy(gameObject, 5f);
+            }
         }
     }
 }

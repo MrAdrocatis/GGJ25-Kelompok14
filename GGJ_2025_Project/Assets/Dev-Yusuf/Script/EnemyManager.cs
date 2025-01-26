@@ -10,6 +10,8 @@ public class EnemyManager : MonoBehaviour
     // Referensi ke GameManager
     public GameManager gameManager;
 
+    public AudioSource deathSound;
+
     private void Awake()
     {
         // Cari GameManager di scene jika belum diassign
@@ -79,7 +81,8 @@ public class EnemyManager : MonoBehaviour
 
     public void OnEnemyDeath()
     {
-        Destroy(gameObject); // Menghancurkan musuh
+        deathSound.Play();
+        Destroy(gameObject,1f); // Menghancurkan musuh
     }
 }
 

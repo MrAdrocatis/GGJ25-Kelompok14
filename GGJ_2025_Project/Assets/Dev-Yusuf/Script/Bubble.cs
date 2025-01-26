@@ -17,6 +17,7 @@ public class Bubble : MonoBehaviour
     public float horizontalMoveInterval = 3f; // Interval between horizontal movements
 
     private Rigidbody2D rb;
+    public Animator AniBubble;
     public GameObject trappedEnemy { get; private set; }
     private float spawnTime;
     private bool hasReachedBoundary = false;
@@ -59,8 +60,9 @@ public class Bubble : MonoBehaviour
 
         if (!IsTrappingEnemy && Time.time - spawnTime > selfDestructTime)
         {
+            AniBubble.SetTrigger("IsPop");
             Debug.Log("Bubble self-destructed after timeout.");
-            Destroy(gameObject);
+            Destroy(gameObject, 0.5f);
         }
     }
 
