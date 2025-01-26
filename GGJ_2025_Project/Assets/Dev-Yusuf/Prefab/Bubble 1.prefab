@@ -128,8 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialUpwardForce: 2
   dragFactor: 0.5
-  selfDestructTime: 30
-  enemyReleaseTime: 30
+  selfDestructTime: 20
+  enemyReleaseTime: 20
   forceDelay: 1.5
   horizontalSpeedMin: 1
   horizontalSpeedMax: 8
