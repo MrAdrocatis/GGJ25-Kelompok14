@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public GameObject loseUI;
 
     [Header("Audio")]
+    public AudioSource bgm;
+    
     public AudioSource winSound;
     public AudioSource loseSound;
 
@@ -103,7 +105,6 @@ public class GameManager : MonoBehaviour
         if (!isGameOver)
         {
             isGameOver = true;
-            if (player != null) Destroy(player);
 
             if (loseSound != null) loseSound.Play();
             if (loseUI != null) loseUI.SetActive(true);
