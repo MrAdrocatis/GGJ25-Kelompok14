@@ -252,9 +252,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 2
-  randomFactor: 0.5
-  randomInterval: 0.5
+  moveSpeed: 7
+  randomFactor: 3
+  randomInterval: 1
 --- !u!114 &4179290188449235154
 MonoBehaviour:
   m_ObjectHideFlags: 0
