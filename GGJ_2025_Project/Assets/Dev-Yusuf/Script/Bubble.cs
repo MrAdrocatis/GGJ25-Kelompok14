@@ -60,9 +60,8 @@ public class Bubble : MonoBehaviour
 
         if (!IsTrappingEnemy && Time.time - spawnTime > selfDestructTime)
         {
-            AniBubble.SetTrigger("IsPop");
             Debug.Log("Bubble self-destructed after timeout.");
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject);
         }
     }
 
