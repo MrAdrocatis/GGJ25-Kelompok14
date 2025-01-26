@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e2c4782125ec91440acaaf7a7381b37e
+guid: fb9ef5f298a769c4c84bda81768b3a70
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,133 +97,154 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ground Tileset_0
+      name: Cloud_1
       rect:
         serializedVersion: 2
         x: 0
         y: 48
-        width: 32
+        width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ea9682595356d14d818fe139f64a3d4
-      internalID: -1401772567
+      spriteID: ff3ce2506ed8a814fbe35da4bb66fa44
+      internalID: 515164013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground Tileset_1
+      name: Cloud_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 48
-        width: 32
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df2b4c2593b50dc468878719b5037371
-      internalID: 771402613
+      spriteID: 69dc1bf4822f18f49947a3e3d44f865c
+      internalID: -806328394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground Tileset_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05f0270d2c2f6b04aac8db1f3a090b67
-      internalID: 550120099
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground Tileset_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8d9c5e816cb32f14ab41865988937736
-      internalID: 1197937764
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground Tileset_4
+      name: Cloud_4
       rect:
         serializedVersion: 2
         x: 0
         y: 16
-        width: 32
-        height: 16
+        width: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 071091e6a0ff9724b97c02e609e8848c
-      internalID: -1065412155
+      spriteID: ea68fcbf7db50014f8ea45399a765436
+      internalID: -2112323149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground Tileset_5
+      name: Cloud _4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13a846e1b5ea53e46940e7ac916ce0ea
+      internalID: 953735809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cloud_5
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30a7d9e8179c1cb4f864da1b893c02cc
+      internalID: -883698171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cloud_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c433380612296cf479e0bf1be6fb21e1
+      internalID: 1236434968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cloud_8
       rect:
         serializedVersion: 2
         x: 32
-        y: 16
-        width: 32
-        height: 16
+        y: 0
+        width: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8132ca02342d3914b88393b057df92c5
-      internalID: 1778254289
+      spriteID: e46e90a5d36094c489f7594d49c21386
+      internalID: 1077758847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground Tileset_6
+      name: Cloud_7
       rect:
         serializedVersion: 2
         x: 0
@@ -231,35 +252,14 @@ TextureImporter:
         width: 32
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff5960440bd7f1040b11a49dd986f4ec
-      internalID: -1615157258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground Tileset_7
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac102708eae8a4d40ac7effb874e3183
-      internalID: 1910736852
+      spriteID: 47ecbdc53d6fe8041b90f0ead5760488
+      internalID: -661858321
       vertices: []
       indices: 
       edges: []
@@ -275,14 +275,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ground Tileset_0: -1401772567
-      Ground Tileset_1: 771402613
-      Ground Tileset_2: 550120099
-      Ground Tileset_3: 1197937764
-      Ground Tileset_4: -1065412155
-      Ground Tileset_5: 1778254289
-      Ground Tileset_6: -1615157258
-      Ground Tileset_7: 1910736852
+      Cloud Tileset_0: 307319999
+      Cloud Tileset_11: -870397648
+      Cloud Tileset_13: -1876990490
+      Cloud Tileset_14: -1700669135
+      Cloud Tileset_15: 84280805
+      Cloud Tileset_2: 377911802
+      Cloud Tileset_6: 259536458
+      Cloud _4: 953735809
+      Cloud_1: 515164013
+      Cloud_2: -806328394
+      Cloud_4: -2112323149
+      Cloud_5: -883698171
+      Cloud_6: 1236434968
+      Cloud_7: -661858321
+      Cloud_8: 1077758847
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
