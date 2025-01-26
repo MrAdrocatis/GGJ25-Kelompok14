@@ -13178,9 +13178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6e2f4a75579774a8fdf50a3638cb67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winConditionType: 0
+  winConditionType: 1
   killQuota: 10
-  survivalTime: 30
+  survivalTime: 60
   killCountText: {fileID: 1541755963}
   countdownText: {fileID: 1399669884}
   winUI: {fileID: 555969584}
