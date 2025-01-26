@@ -95,14 +95,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399939528975428102}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -128,9 +128,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialUpwardForce: 2
   dragFactor: 0.5
-  selfDestructTime: 30
-  enemyReleaseTime: 30
+  selfDestructTime: 20
+  enemyReleaseTime: 20
   forceDelay: 1.5
+  horizontalSpeedMin: 1
+  horizontalSpeedMax: 8
+  horizontalMoveInterval: 3
 --- !u!58 &-6961302371776235580
 CircleCollider2D:
   m_ObjectHideFlags: 0

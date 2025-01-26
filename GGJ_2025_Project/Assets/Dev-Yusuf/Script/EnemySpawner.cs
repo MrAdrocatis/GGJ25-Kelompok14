@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,19 +16,26 @@ public class EnemySpawner : MonoBehaviour
     public Vector2 bottomLeft; // Koordinat bawah kiri area spawn
     public Vector2 topRight; // Koordinat atas kanan area spawn
     public float spawnInterval = 2f; // Jeda antar spawn
-    public float intensityIncreasePerMinute = 0.1f; // Intensitas peningkatan per menit (default 0.1)
+    public float intensityIncreasePerMinute = 0.1f; // Intensitas peningkatan per menit
+    public int maxSpawnCount = 0; // Jumlah maksimal musuh yang boleh di-spawn (0 = infinite)
 
     private float timeSinceLastSpawn;
     private float currentInterval;
+    private int totalSpawnedEnemies = 0; // Jumlah total musuh yang di-spawn
+    private GameManager gameManager; // Referensi ke GameManager
+    private bool spawningEnabled = true; // Status apakah spawner masih aktif
 
     private void Start()
     {
         currentInterval = spawnInterval;
+        gameManager = FindObjectOfType<GameManager>(); // Cari GameManager di scene
         InvokeRepeating(nameof(IncreaseSpawnIntensity), 60f, 60f); // Mempercepat interval tiap menit
     }
 
     private void Update()
     {
+        if (!spawningEnabled) return;
+
         timeSinceLastSpawn += Time.deltaTime;
         if (timeSinceLastSpawn >= currentInterval)
         {
@@ -40,17 +48,21 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemyPrefabs.Count == 0) return;
 
-        // Pilih enemy secara acak berdasarkan probabilitas
         GameObject selectedEnemy = GetRandomEnemy();
         if (selectedEnemy == null) return;
 
-        // Tentukan posisi spawn di dalam area
-        float spawnX = Random.Range(bottomLeft.x, topRight.x);
-        float spawnY = Random.Range(bottomLeft.y, topRight.y);
+        float spawnX = UnityEngine.Random.Range(bottomLeft.x, topRight.x);
+        float spawnY = UnityEngine.Random.Range(bottomLeft.y, topRight.y);
         Vector2 spawnPosition = new Vector2(spawnX, spawnY);
 
-        // Spawn enemy
         Instantiate(selectedEnemy, spawnPosition, Quaternion.identity);
+
+        totalSpawnedEnemies++;
+        if (maxSpawnCount > 0 && totalSpawnedEnemies >= maxSpawnCount)
+        {
+            spawningEnabled = false;
+            CancelInvoke(nameof(IncreaseSpawnIntensity));
+        }
     }
 
     private GameObject GetRandomEnemy()
@@ -61,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
             totalProbability += enemy.spawnProbability;
         }
 
-        float randomValue = Random.Range(0f, totalProbability);
+        float randomValue = UnityEngine.Random.Range(0f, totalProbability);
         float cumulativeProbability = 0f;
 
         foreach (var enemy in enemyPrefabs)
@@ -88,5 +100,10 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.DrawLine(new Vector3(bottomLeft.x, topRight.y, 0), new Vector3(topRight.x, topRight.y, 0));
         Gizmos.DrawLine(new Vector3(topRight.x, topRight.y, 0), new Vector3(topRight.x, bottomLeft.y, 0));
         Gizmos.DrawLine(new Vector3(topRight.x, bottomLeft.y, 0), new Vector3(bottomLeft.x, bottomLeft.y, 0));
+    }
+
+    public bool IsSpawnerFinished()
+    {
+        return !spawningEnabled; // Mengembalikan status apakah spawner selesai
     }
 }
