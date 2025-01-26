@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 894cbeb4975710d499055d2165bb4fb8, type: 3}
-  m_Color: {r: 0.8941177, g: 0.37254903, b: 0.56078434, a: 0.33333334}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -129,12 +129,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialUpwardForce: 2
   dragFactor: 0.5
-  selfDestructTime: 20
-  enemyReleaseTime: 20
+  selfDestructTime: 7
+  enemyReleaseTime: 10
   forceDelay: 1.5
   horizontalSpeedMin: 1
   horizontalSpeedMax: 8
   horizontalMoveInterval: 3
+  AniBubble: {fileID: 0}
 --- !u!58 &-6961302371776235580
 CircleCollider2D:
   m_ObjectHideFlags: 0
